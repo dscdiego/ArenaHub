@@ -17,10 +17,12 @@ target/
 *.swo
 *~
 
-# Environment
+# Environment (NUNCA commitar credenciais!)
 .env
 .env.local
 .env.*.local
+.env.production
+!.env.example
 
 # OS
 .DS_Store
@@ -53,3 +55,23 @@ frontend/node_modules/
 frontend/dist/
 frontend/build/
 frontend/.env.local
+
+# Docker volumes (dados sensíveis)
+db_data/
+mysql_data/
+
+# Backups
+backups/
+*.sql
+*.sql.gz
+
+# Arquivos temporários
+tmp/
+temp/
+*.tmp
+
+# Certificados SSL (para produção)
+*.pem
+*.key
+*.crt
+*.cert

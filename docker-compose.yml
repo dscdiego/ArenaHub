@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # Banco de Dados
+  db:
+    image: mysql:8.0
+    container_name: arenahub-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password_change_me
+      MYSQL_DATABASE: arenahub
+      MYSQL_USER: arenahub_user
+      MYSQL_PASSWORD: arenahub_password_change_me
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./backend/database/schema.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - arenahub-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+
+  # Backend - Spring Boot
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: arenahub-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/arenahub
+      SPRING_DATASOURCE_USERNAME: arenahub_user
+      SPRING_DATASOURCE_PASSWORD: arenahub_password_change_me
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "false"
+      JAVA_TOOL_OPTIONS: "-Dfile.encoding=UTF-8"
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - arenahub-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      timeout: 10s
+      retries: 5
+      interval: 10s
+
+  # Frontend - React + Nginx
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: arenahub-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - arenahub-network
+
+volumes:
+  db_data:
+
+networks:
+  arenahub-network:
+    driver: bridge
