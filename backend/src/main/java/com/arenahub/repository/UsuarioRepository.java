@@ -1,0 +1,12 @@
+package com.arenahub.repository;
+
+import com.arenahub.model.TipoUsuario;
+import com.arenahub.model.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+    Optional<Usuario> findByEmailAndTipoUsuario(String email, TipoUsuario tipoUsuario);
+    boolean existsByEmailAndTipoUsuario(String email, TipoUsuario tipoUsuario);
+}

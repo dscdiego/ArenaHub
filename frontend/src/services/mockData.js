@@ -1,0 +1,61 @@
+export const fallbackArenas = [
+  {
+    id: 1,
+    nome: 'Arena Beach Fortaleza',
+    descricao: 'Arena para Beach Tennis e Futevôlei com estrutura completa.',
+    endereco: 'Av. Beira Mar, 2500',
+    cidade: 'Fortaleza',
+    bairro: 'Meireles',
+    telefone: '8599999-1000',
+    valorHora: 70,
+    imagemUrl: 'https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?auto=format&fit=crop&w=1200&q=80',
+    ativa: true,
+    esportes: ['Beach Tennis', 'Futevôlei'],
+    nota: 4.8,
+    avaliacoes: 96,
+  },
+  {
+    id: 2,
+    nome: 'Arena Fut7',
+    descricao: 'Campo society iluminado, gramado sintético e vestiário.',
+    endereco: 'Rua das Arenas, 123',
+    cidade: 'Fortaleza',
+    bairro: 'Aldeota',
+    telefone: '8599999-2000',
+    valorHora: 100,
+    imagemUrl: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=1200&q=80',
+    ativa: true,
+    esportes: ['Campo Society', 'Fut7'],
+    nota: 4.7,
+    avaliacoes: 120,
+  },
+  {
+    id: 3,
+    nome: 'Quadra PraiaSport',
+    descricao: 'Quadra de areia para vôlei de praia e futevôlei.',
+    endereco: 'Rua do Esporte, 400',
+    cidade: 'Fortaleza',
+    bairro: 'Praia do Futuro',
+    telefone: '8599999-3000',
+    valorHora: 60,
+    imagemUrl: 'https://images.unsplash.com/photo-1593766827228-8737b4534aa6?auto=format&fit=crop&w=1200&q=80',
+    ativa: true,
+    esportes: ['Vôlei de Praia', 'Futevôlei'],
+    nota: 4.6,
+    avaliacoes: 73,
+  },
+];
+
+export const fallbackHorarios = [
+  { id: 1, arenaId: 2, arenaNome: 'Arena Fut7', data: '2026-05-15', horaInicio: '17:00', horaFim: '18:00', disponivel: false, bloqueado: false },
+  { id: 2, arenaId: 2, arenaNome: 'Arena Fut7', data: '2026-05-15', horaInicio: '18:00', horaFim: '19:00', disponivel: true, bloqueado: false },
+  { id: 3, arenaId: 2, arenaNome: 'Arena Fut7', data: '2026-05-15', horaInicio: '19:00', horaFim: '20:00', disponivel: false, bloqueado: false },
+  { id: 4, arenaId: 1, arenaNome: 'Arena Beach Fortaleza', data: '2026-05-15', horaInicio: '18:00', horaFim: '19:00', disponivel: true, bloqueado: false },
+  { id: 5, arenaId: 3, arenaNome: 'Quadra PraiaSport', data: '2026-05-15', horaInicio: '20:00', horaFim: '21:00', disponivel: true, bloqueado: false },
+];
+
+export const fallbackReservas = [
+  { id: 1, usuarioNome: 'Pedro Silva', arenaId: 2, arenaNome: 'Arena Fut7', valorHora: 100, horarioId: 2, data: '2026-05-15', horaInicio: '18:00', horaFim: '19:00', status: 'CONFIRMADA' },
+  { id: 2, usuarioNome: 'Ana Costa', arenaId: 1, arenaNome: 'Arena Beach Fortaleza', valorHora: 70, horarioId: 4, data: '2026-05-15', horaInicio: '18:00', horaFim: '19:00', status: 'CONFIRMADA' },
+  { id: 3, usuarioNome: 'Carlos Oliveira', arenaId: 3, arenaNome: 'Quadra PraiaSport', valorHora: 60, horarioId: 5, data: '2026-05-15', horaInicio: '20:00', horaFim: '21:00', status: 'CONFIRMADA' },
+];
