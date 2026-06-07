@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "biometric_credentials", indexes = {
-    @Index(name = "idx_usuario_biometrica", columnNames = "usuario_id"),
-    @Index(name = "idx_credencial_id", columnNames = "credential_id")
+    @Index(name = "idx_usuario_biometrica", columnList = "usuario_id"),
+    @Index(name = "idx_credencial_id", columnList = "credential_id")
 })
 public class BiometricCredential {
     @Id
@@ -23,7 +23,7 @@ public class BiometricCredential {
     @Column(name = "credential_id", nullable = false, unique = true, length = 500)
     private String credentialId;
 
-    @Column(name = "public_key", nullable = false, columnType = "LONGTEXT")
+    @Column(name = "public_key", nullable = false, columnDefinition = "LONGTEXT")
     private String publicKey; // Chave pública em Base64
 
     @Column(name = "aaguid", length = 100)

@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
  * Serviço de Rate Limiting para proteção contra força bruta
  */
 @Service
+@SuppressWarnings("null")
 public class RateLimitService {
     
     // Rate limiter por IP (5 tentativas por minuto)

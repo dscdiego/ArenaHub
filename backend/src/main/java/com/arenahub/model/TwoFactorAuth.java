@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "two_factor_auth", indexes = {
-    @Index(name = "idx_usuario_2fa", columnNames = "usuario_id")
+    @Index(name = "idx_usuario_2fa", columnList = "usuario_id")
 })
 public class TwoFactorAuth {
     @Id
@@ -28,7 +28,7 @@ public class TwoFactorAuth {
     @Column(nullable = false)
     private Boolean verificado = false; // Necessário verificar com código TOTP antes de habilitar
 
-    @Column(name = "backup_codes", columnType = "TEXT")
+    @Column(name = "backup_codes", columnDefinition = "TEXT")
     private String backupCodes; // Códigos de backup em JSON (criptografados)
 
     @Column(name = "data_criacao", nullable = false)
